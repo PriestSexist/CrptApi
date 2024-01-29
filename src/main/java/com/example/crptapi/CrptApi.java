@@ -1,19 +1,16 @@
 package com.example.crptapi;
 
 import com.google.gson.*;
-import lombok.*;
-import org.springframework.http.HttpEntity;
+import lombok.Builder;
+import lombok.Data;
 
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -49,7 +46,7 @@ public class CrptApi {
 
             String jsonDocument = gson.toJson(documentDto);
             URI uri;
-            HttpResponse.BodyHandler<String > responseBodyHandler = HttpResponse.BodyHandlers.ofString();
+            HttpResponse.BodyHandler<String> responseBodyHandler = HttpResponse.BodyHandlers.ofString();
 
             try {
                 uri = new URI(URL);
@@ -72,7 +69,7 @@ public class CrptApi {
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            
+
         } else {
             System.out.println("Превышено максимально количество запросов к API за единицу времени. Вызов заблокирован");
         }
